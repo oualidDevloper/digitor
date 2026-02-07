@@ -1,0 +1,126 @@
+.dashboardGrid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 3rem;
+}
+
+.orderList {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.orderCard {
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+}
+
+.orderHeader {
+    padding: 1.5rem 2rem;
+    background: hsla(var(--text-primary), 0.03);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.orderDate {
+    display: block;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.orderId {
+    font-size: 0.85rem;
+    color: hsl(var(--text-dim));
+}
+
+.orderStatus {
+    background: hsla(var(--accent-primary), 0.2);
+    color: hsl(var(--accent-primary));
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.itemsList {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.itemRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.itemInfo {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.itemImage {
+    position: relative;
+    width: 80px;
+    height: 60px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+}
+
+.itemTitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.itemCategory {
+    font-size: 0.85rem;
+    color: hsl(var(--text-dim));
+}
+
+.downloadBtn {
+    background: var(--accent-gradient);
+    color: white;
+    padding: 10px 24px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    box-shadow: 0 5px 15px -5px hsla(var(--accent-primary), 0.5);
+    transition: var(--transition-smooth);
+}
+
+.downloadBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -5px hsla(var(--accent-primary), 0.6);
+}
+
+@media (max-width: 992px) {
+    .dashboardGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .profileAside {
+        order: -1;
+    }
+}
+
+@media (max-width: 640px) {
+    .itemRow {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .downloadBtn {
+        width: 100%;
+        text-align: center;
+    }
+}

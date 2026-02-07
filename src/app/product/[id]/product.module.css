@@ -1,0 +1,138 @@
+.productLayout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    margin-bottom: 100px;
+}
+
+.imageSection {
+    position: sticky;
+    top: 140px;
+}
+
+.imageWrapper {
+    position: relative;
+    aspect-ratio: 16/10;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+}
+
+.image {
+    object-fit: cover;
+}
+
+.infoSection {
+    display: flex;
+    flex-direction: column;
+}
+
+.category {
+    font-size: 0.9rem;
+    color: hsl(var(--accent-primary));
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+}
+
+.title {
+    font-family: var(--font-outfit);
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.format {
+    color: hsl(var(--text-secondary));
+    margin-bottom: 2rem;
+}
+
+.priceTag {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.price {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: hsl(var(--text-primary));
+}
+
+.vat {
+    color: hsl(var(--text-dim));
+    font-weight: 600;
+}
+
+.description {
+    font-size: 1.1rem;
+    color: hsl(var(--text-secondary));
+    line-height: 1.8;
+    margin-bottom: 3rem;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.addToCartBtn {
+    background: var(--accent-gradient);
+    color: white;
+    border: none;
+    padding: 20px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 30px -10px hsla(var(--accent-primary), 0.5);
+    transition: var(--transition-smooth);
+}
+
+.addToCartBtn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px -10px hsla(var(--accent-primary), 0.7);
+}
+
+.trustBadge {
+    text-align: center;
+    font-size: 0.9rem;
+    color: hsl(var(--success));
+    font-weight: 500;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+.featureItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    color: hsl(var(--text-primary));
+}
+
+@media (max-width: 1024px) {
+    .productLayout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .imageSection {
+        position: static;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+}

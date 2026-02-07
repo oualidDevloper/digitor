@@ -1,0 +1,63 @@
+.hero {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 0 60px;
+}
+
+.featured {
+  padding: 100px 0;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2.5rem;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.primaryBtn {
+  background: var(--accent-gradient);
+  color: white;
+  border: none;
+  padding: 14px 40px;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 10px 20px -5px hsla(var(--accent-primary), 0.5);
+  transition: var(--transition-smooth);
+}
+
+.secondaryBtn {
+  background: hsla(var(--text-primary), 0.05);
+  color: hsl(var(--text-primary));
+  border: 1px solid hsla(var(--text-primary), 0.1);
+  padding: 14px 40px;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: var(--transition-smooth);
+}
+
+.primaryBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px -5px hsla(var(--accent-primary), 0.6);
+}
+
+.secondaryBtn:hover {
+  background: hsla(var(--text-primary), 0.1);
+  transform: translateY(-2px);
+}

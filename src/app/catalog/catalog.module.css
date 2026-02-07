@@ -1,0 +1,84 @@
+.header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 60px;
+    align-items: center;
+}
+
+.searchBar {
+    width: 100%;
+    max-width: 600px;
+}
+
+.searchBar input {
+    width: 100%;
+    padding: 16px 24px;
+    border-radius: 30px;
+    border: 1px solid var(--glass-border);
+    color: hsl(var(--text-primary));
+    font-size: 1rem;
+    outline: none;
+    transition: var(--transition-smooth);
+}
+
+.searchBar input:focus {
+    border-color: hsl(var(--accent-primary));
+    box-shadow: 0 0 20px hsla(var(--accent-primary), 0.2);
+}
+
+.filters {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.filterBtn {
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    color: hsl(var(--text-secondary));
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: var(--transition-smooth);
+}
+
+.filterBtn:hover {
+    border-color: hsla(var(--text-primary), 0.3);
+    color: hsl(var(--text-primary));
+}
+
+.filterBtn.active {
+    background: var(--accent-gradient);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 10px 20px -5px hsla(var(--accent-primary), 0.4);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin-bottom: 100px;
+}
+
+.noResults {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 100px 0;
+    color: hsl(var(--text-dim));
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .controls {
+        gap: 1.5rem;
+    }
+}
