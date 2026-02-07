@@ -29,8 +29,19 @@ export default function CheckoutButton() {
             }
 
             // Re-route to Stripe Checkout
-            const stripe = (await import('@stripe/stripe-js')).loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
-            (await stripe)?.redirectToCheckout({ sessionId: id });
+            const { loadStripe } = await import('@stripe/stripe-js');
+            const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+
+            if (stripe) {
+                // @ts-ignore
+                const { error: stripeError } = await stripe.redirectToCheckout({ sessionId: id });
+                if (stripeError) {
+                    console.error('Stripe redirect error:', stripeError);
+                    alert(stripeError.message);
+                }
+            } else {
+                throw new Error("Stripe n'a pas pu être chargé.");
+            }
 
         } catch (err) {
             console.error('Checkout error:', err);
