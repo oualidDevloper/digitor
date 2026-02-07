@@ -11,22 +11,36 @@ export async function POST(req: Request) {
         }
 
         // Create Stripe checkout session
+        const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+
+        if (!siteUrl) {
+            console.error('CRITICAL: NEXT_PUBLIC_SITE_URL is missing in environment variables');
+            return NextResponse.json({ error: 'Configuration Error: Site URL is missing.' }, { status: 500 });
+        }
+
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
-            line_items: items.map((item: any) => ({
-                price_data: {
-                    currency: 'eur',
-                    product_data: {
-                        name: item.title,
-                        images: [item.image.startsWith('http') ? item.image : `${process.env.NEXT_PUBLIC_SITE_URL}${item.image}`],
+            line_items: items.map((item: any) => {
+                const imageUrl = item.image_url || item.image || '';
+                const absoluteImageUrl = imageUrl.startsWith('http')
+                    ? imageUrl
+                    : `${siteUrl}${imageUrl.startsWith('/') ? '' : '/'}${imageUrl}`;
+
+                return {
+                    price_data: {
+                        currency: 'eur',
+                        product_data: {
+                            name: item.title,
+                            images: absoluteImageUrl ? [absoluteImageUrl] : [],
+                        },
+                        unit_amount: Math.round(item.price * 100),
                     },
-                    unit_amount: Math.round(item.price * 100),
-                },
-                quantity: item.quantity,
-            })),
+                    quantity: item.quantity,
+                };
+            }),
             mode: 'payment',
-            success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/cart`,
+            success_url: `${siteUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
+            cancel_url: `${siteUrl}/cart`,
             metadata: {
                 userId: userId || 'guest',
                 productIds: JSON.stringify(items.map((item: any) => item.id)),

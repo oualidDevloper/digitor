@@ -1,15 +1,16 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { Product } from '@/data/products';
+import { Product } from '@/lib/types';
 
 interface CartItem extends Product {
     quantity: number;
+    image?: string; // Support for mockup data transition
 }
 
 interface CartContextType {
     cart: CartItem[];
-    addToCart: (product: Product) => void;
+    addToCart: (product: Product | any) => void;
     removeFromCart: (productId: string) => void;
     clearCart: () => void;
     totalItems: number;

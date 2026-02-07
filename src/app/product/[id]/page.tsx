@@ -1,14 +1,20 @@
 import Image from "next/image";
-import { products } from "@/data/products";
+import { supabase } from "@/lib/supabase";
+import { Product } from "@/lib/types";
 import styles from "./product.module.css";
 import { notFound } from "next/navigation";
 import AddToCartButton from "./AddToCartButton";
 
-export default async function ProductPage({ params }: { params: { id: string } }) {
+export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
-    const product = products.find(p => p.id === id);
 
-    if (!product) {
+    const { data: product, error } = await supabase
+        .from("products")
+        .select("*")
+        .eq("id", id)
+        .single();
+
+    if (error || !product) {
         notFound();
     }
 
@@ -19,7 +25,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
                     <div className={styles.imageSection}>
                         <div className={`${styles.imageWrapper} glass`}>
                             <Image
-                                src={product.image}
+                                src={product.image_url}
                                 alt={product.title}
                                 fill
                                 className={styles.image}

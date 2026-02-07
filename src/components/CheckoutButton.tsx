@@ -43,9 +43,9 @@ export default function CheckoutButton() {
                 throw new Error("Stripe n'a pas pu être chargé.");
             }
 
-        } catch (err) {
+        } catch (err: any) {
             console.error('Checkout error:', err);
-            alert('Une erreur est survenue lors de l\'initialisation du paiement.');
+            alert(err.message || 'Une erreur est survenue lors de l\'initialisation du paiement.');
         }
     };
 

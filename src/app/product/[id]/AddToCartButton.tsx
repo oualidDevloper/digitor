@@ -1,7 +1,7 @@
 "use client";
 
 import { useCart } from "@/context/CartContext";
-import { Product } from "@/data/products";
+import { Product } from "@/lib/types";
 import styles from "./product.module.css";
 
 export default function AddToCartButton({ product }: { product: Product }) {
